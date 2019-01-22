@@ -123,8 +123,8 @@ using BenchmarkTools
 
 using CuArrays
 
-x_d = cufill(1.0f0, N)  # a vector stored on the GPU filled with 1.0 (Float32)
-y_d = cufill(2.0f0, N)  # a vector stored on the GPU filled with 2.0
+x_d = CuArray(fill(1.0f0, N))  # a vector stored on the GPU filled with 1.0 (Float32)
+y_d = CuArray(fill(2.0f0, N))  # a vector stored on the GPU filled with 2.0
 
 #' Here the `d` means "device," in contrast with "host". Now let's do the increment:
 
@@ -239,8 +239,8 @@ code = """
     end
 
     N = 2^20
-    x_d = cufill(1.0f0, N)
-    y_d = cufill(2.0f0, N)
+    x_d = CuArray(fill(1.0f0, N))
+    y_d = CuArray(fill(2.0f0, N))
 
     bench_gpu1!(y_d, x_d)
     CUDAdrv.@profile bench_gpu1!(y_d, x_d)
@@ -383,8 +383,8 @@ code = """
     end
 
     N = 2^20
-    x_d = cufill(1.0f0, N)
-    y_d = cufill(2.0f0, N)
+    x_d = CuArray(fill(1.0f0, N))
+    y_d = CuArray(fill(2.0f0, N))
 
     bench_gpu3!(y_d, x_d)
     CUDAdrv.@profile bench_gpu3!(y_d, x_d)
