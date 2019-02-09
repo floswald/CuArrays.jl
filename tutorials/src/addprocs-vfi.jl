@@ -49,6 +49,7 @@ include(joinpath(@__DIR__, "common.jl"))
         return V
     end
 
+    println("@time cpu_lifecycle_multicore(p)")
     V = cpu_lifecycle_multicore(p);
     println("first three shock states at age 1: $(V[1,1:3,1])")
-    @benchmark cpu_lifecycle_multicore(p)    
+    @time cpu_lifecycle_multicore(p)    

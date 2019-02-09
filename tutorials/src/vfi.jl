@@ -159,9 +159,6 @@ plot(p1,p2,layout=2, link=:y)
 #'
 #' ![processes](iterms.png)
 #'
-#'
-#' ![block grid](intro1.png)
-#'
 #' The `Distributed` package provides functionality to efficiently connect those separate processes, 
 #' and the `SharedArrays` package gives us an `Array` type which may be shared by several processes.
 #' The function `workers()` shows the ids of the currently active workers. By default, this is 
@@ -241,7 +238,7 @@ end
 
 #+ eval=false
 
-JULIA_NUM_THREADS=5 julia
+JULIA_NUM_THREADS=4 julia
 
 #+
 
@@ -288,13 +285,10 @@ using Test
 @time cpu_lifecycle(p);
 
 
-#' You can see that they all differ. In order to improve on this, we have the `BenchmarkTools` package available. It basically runs the benchmark function many times and reports summary statistics.:
+#' You can see that they all differ. If we were benchmarking a function that runs quickly, we could use the `BenchmarkTools` package. It basically runs the benchmark function many times and reports summary statistics. For long-running functions like ours, it will only take one sample, so the standard `@time` will do for us.
 
-using BenchmarkTools
-b1 = @benchmark cpu_lifecycle(p);
-b2 = @benchmark cpu_lifecycle_thread(p);
-b1
-b2
+@time cpu_lifecycle(p);
+@time cpu_lifecycle_thread(p);
 
 #+ echo=false
 
@@ -305,7 +299,7 @@ run(`$(Base.julia_cmd()) $(joinpath(@__DIR__, "addprocs-vfi.jl"))`)
 
 
 
-#' So, we can see that depending
+#' Looking at those results its important to realise that we didn't cut the runtime by exactly the number of processes we ran - quite far from it, actually. It is **very** rare that our parallelization would achieve this so-called *linear* speedup. Overhead from communication between the various processes (threads or workers) is a crucial component of non-linear speedup. A simple rule of thumb is to avoid data movement between processes as much as possible; unfortunately optimizing parallel solutions beyond that simple rule requires knowledge that goes beyond this tutorial (and its author's knowledge as well).
 
 
 #' ## Parallelizing on the GPU 

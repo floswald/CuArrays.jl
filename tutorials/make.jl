@@ -14,5 +14,8 @@ cd(joinpath(@__DIR__, "src")) do
 #    cp("intro1.png", "../build/intro1.png")
     
     # value function iteration tutorial
-    weave("vfi.jl", out_path="../build", doctype="md2html")
+    weave("vfi.jl", out_path="../build", doctype="md2html",css="style.css")
+   cp("addprocs.png", "../build/addprocs.png")
+   cp("iterms.png", "../build/iterms.png")
+   cp("threads.png", "../build/threads.png")
 end
