@@ -4,7 +4,7 @@
 #' ---
 
 
-#' This tutorial is inspired [Tim Holy's introduction to GPU for Julia](https://juliagpu.gitlab.io/CuArrays.jl/tutorials/intro.html). Here we implement a custom Kernel to compute a simple value function iteration (VFI) algorithm. That part of the tutorial is based on [Fernandez-Villaverde and Zarruk's](https://github.com/davidzarruk/Parallel_Computing) parallel computing survey for Economists. For a good introduction to the computational side of value function iteration, I recommend the corresponding [QuantEcon tutorial](https://lectures.quantecon.org/jl/discrete_dp.html).
+#' This tutorial is inspired [Tim Holy's introduction to GPU for Julia](https://juliagpu.gitlab.io/CuArrays.jl/tutorials/generated/intro/#Your-first-GPU-computation-1). Here we implement a custom Kernel to compute a simple value function iteration (VFI) algorithm. That part of the tutorial is based on [Fernandez-Villaverde and Zarruk's](https://github.com/davidzarruk/Parallel_Computing) parallel computing survey for Economists. For a good introduction to the computational side of value function iteration, I recommend the corresponding [QuantEcon tutorial](https://lectures.quantecon.org/jl/discrete_dp.html).
 
 
 
